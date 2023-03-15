@@ -9,6 +9,9 @@ module.exports = {
     ],
 
     theme: {
+        container: {
+            center: true,
+        },
         extend: {
             fontFamily: {
                 sans: [
@@ -19,6 +22,7 @@ module.exports = {
     },
 
     plugins: [
+        require("@tailwindcss/typography"),
         require('@tailwindcss/forms'),
         require("daisyui"),
     ],
