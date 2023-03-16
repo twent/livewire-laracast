@@ -21,6 +21,9 @@
                 </div>
             </div>
 
+            <!-- Music Search -->
+            <livewire:music-search-dropdown />
+
             @guest
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('login')" :active="request()->routeIs('login')">

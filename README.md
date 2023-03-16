@@ -11,3 +11,5 @@ How to run:
 
 ## 1. Basic lessons:
 1. Contact form - [/contact](http://localhost/contact)
+2. PHPUnit tests for Contact form
+3. Music search dropdown field (see in navigation bar) with tests
