@@ -1,8 +1,9 @@
 <?php
 
-use App\Http\Controllers\ContactController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Livewire\ContactForm;
+use App\Http\Livewire\UsersDatatable;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,7 +19,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', HomeController::class)->name('home');
 
-Route::get('/contact', ContactController::class)->name('contact');
+Route::get('/contact', ContactForm::class)->name('contact');
+
+Route::get('/users', UsersDatatable::class)->name('users');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
