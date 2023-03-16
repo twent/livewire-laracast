@@ -15,3 +15,9 @@ stop:
 
 db-refresh:
 	vendor/bin/sail php artisan migrate:fresh --seed
+
+test:
+	vendor/bin/sail php artisan test
+
+format:
+	vendor/bin/phpcs && vendor/bin/phpcbf
