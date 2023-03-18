@@ -13,4 +13,5 @@ How to run:
 1. Contact form - [/contact](http://localhost/contact)
 2. PHPUnit tests for Contact form
 3. Music search dropdown field (see in navigation bar) with tests
-4. Pagination  - [/users](http://localhost/users)
+4. Pagination - [/users](http://localhost/users)
+5. Users Datatable (fulltext search, filters & sorting) - [/users](http://localhost/users)
