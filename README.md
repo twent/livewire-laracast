@@ -15,3 +15,4 @@ How to run:
 3. Music search dropdown field (see in navigation bar) with tests
 4. Pagination - [/users](http://localhost/users)
 5. Users Datatable (fulltext search, filters & sorting) - [/users](http://localhost/users)
+6. Users Datatable Unit tests
