@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Livewire\ContactForm;
 use App\Http\Livewire\UsersDatatable;
@@ -22,6 +23,9 @@ Route::get('/', HomeController::class)->name('home');
 Route::get('/contact', ContactForm::class)->name('contact');
 
 Route::get('/users', UsersDatatable::class)->name('users');
+
+Route::get('/blog', [PostController::class, 'index'])->name('blog');
+Route::get('/blog/{post}', [PostController::class, 'show'])->name('post');
 
 Route::get('/dashboard', function () {
     return view('dashboard');

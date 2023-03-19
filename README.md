@@ -16,3 +16,4 @@ How to run:
 4. Pagination - [/users](http://localhost/users)
 5. Users Datatable (fulltext search, filters & sorting) - [/users](http://localhost/users)
 6. Users Datatable Unit tests
+7. Comments component, Blog - [/blog/{post-slug}](http://localhost/blog/{post-slug})
