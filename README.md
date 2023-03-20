@@ -18,3 +18,4 @@ How to run:
 6. Users Datatable Unit tests
 7. Comments component, Blog - [/blog/{post-slug}](http://localhost/blog/{post-slug})
 8. Comments and blog Unit tests
+9. Polling component (with Unit tests) - [/polling](http://localhost/polling)
