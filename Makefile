@@ -8,6 +8,7 @@ install:
 
 start:
 	yarn build
+	vendor/bin/sail artisan storage:link --force
 	vendor/bin/sail up -d
 
 stop:

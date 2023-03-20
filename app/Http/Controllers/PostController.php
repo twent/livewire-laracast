@@ -11,7 +11,9 @@ class PostController extends Controller
 {
     public function index(): View
     {
-        $posts = Post::query()->latest()->paginate(9);
+        $posts = Post::query()
+            ->orderByDesc('published_at')
+            ->paginate(9);
 
         return view('blog.index', [
             'posts' => $posts,

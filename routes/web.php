@@ -5,6 +5,7 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Livewire\ContactForm;
 use App\Http\Livewire\Polling;
+use App\Http\Livewire\PostEditPage;
 use App\Http\Livewire\UsersDatatable;
 use Illuminate\Support\Facades\Route;
 
@@ -27,6 +28,7 @@ Route::get('/users', UsersDatatable::class)->name('users');
 
 Route::get('/blog', [PostController::class, 'index'])->name('blog');
 Route::get('/blog/{post}', [PostController::class, 'show'])->name('post');
+Route::get('/blog/{post}/edit', PostEditPage::class)->name('post.edit');
 
 Route::get('/polling', Polling::class)->name('polling');
 

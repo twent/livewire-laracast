@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use App\Models\Scopes\PublishedScope;
+use DateTimeInterface;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -27,8 +29,21 @@ class Post extends Model
     ];
 
     protected $casts = [
-        'published_at' => 'datetime',
+        'published_at' => 'datetime:Y-m-d\TH:i',
     ];
+
+    protected function thumbnail(): Attribute
+    {
+        return Attribute::make(
+            get: function (string $value) {
+                if (str_starts_with($value, 'https')) {
+                    return $value;
+                }
+
+                return asset("files/$value");
+            }
+        );
+    }
 
     protected static function booted(): void
     {

@@ -19,3 +19,4 @@ How to run:
 7. Comments component, Blog - [/blog/{post-slug}](http://localhost/blog/{post-slug})
 8. Comments and blog Unit tests
 9. Polling component (with Unit tests) - [/polling](http://localhost/polling)
+10. File uploading (post edit page) - [/blog/{post-slug}/edit](http://localhost/blog/{post-slug}/edit))

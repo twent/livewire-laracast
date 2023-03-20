@@ -13,7 +13,7 @@
         <div class="hero" style="background-image: url({{ $post->thumbnail }});">
             <div class="hero-overlay bg-opacity-70 backdrop-blur-sm"></div>
             <div class="hero-content text-center text-neutral-content">
-                <div class="max-w-md my-12 space-y-8">
+                <div class="max-w-lg my-12 space-y-8">
                     <div class="flex items-center gap-8 justify-center">
                         <a href="#" class="flex gap-2 items-center">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
@@ -27,12 +27,20 @@
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
                             </svg>
-                            <span>{{ $post->created_at->diffForHumans() }}</span>
+                            <span>{{ $post->published_at->diffForHumans() }}</span>
                         </div>
+
+                        <a href="{{ route('post.edit', $post) }}" class="btn gap-2 btn-sm shadow-md">
+                            {{ __('Edit') }}
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4">
+                                <path d="M21.731 2.269a2.625 2.625 0 00-3.712 0l-1.157 1.157 3.712 3.712 1.157-1.157a2.625 2.625 0 000-3.712zM19.513 8.199l-3.712-3.712-12.15 12.15a5.25 5.25 0 00-1.32 2.214l-.8 2.685a.75.75 0 00.933.933l2.685-.8a5.25 5.25 0 002.214-1.32L19.513 8.2z" />
+                            </svg>
+                        </a>
                     </div>
 
                     <h1 class="text-5xl font-bold">{{ $post->title }}</h1>
-                    <p>{{ $post->intro }}</p>
+
+                    <p class="max-w-md mx-auto">{{ $post->intro }}</p>
                 </div>
             </div>
         </div>
