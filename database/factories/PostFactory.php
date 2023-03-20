@@ -21,4 +21,11 @@ class PostFactory extends Factory
             'published_at' => $this->faker->randomElement([now(), null]),
         ];
     }
+
+    public function published(): static
+    {
+        return $this->state(fn (array $attributes) => [
+            'published_at' => now(),
+        ]);
+    }
 }

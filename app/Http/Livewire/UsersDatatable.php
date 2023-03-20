@@ -62,8 +62,6 @@ class UsersDatatable extends Component
             $users = $users->onlyTrashed();
         }
 
-        sleep(1);
-
         return view('livewire.users-datatable', [
             'users' => $users->when($this->sortingField, function (Builder $query) {
                 $query->orderBy(

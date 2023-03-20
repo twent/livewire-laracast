@@ -59,8 +59,8 @@
 
     <h2 class="ml-4 text-3xl font-bold">{{ __('Comments:') }}</h2>
 
-    <div class="flex flex-wrap gap-8">
-        @foreach($comments as $comment)
+    <div class="pb-4 flex flex-wrap gap-8">
+        @forelse($comments as $comment)
             <div class="card card-bordered w-full bg-base-100 shadow-xl">
                 <div class="card-body gap-6">
                     <div class="flex gap-4 items-center">
@@ -79,6 +79,10 @@
                     </p>
                 </div>
             </div>
-        @endforeach
+        @empty
+            <div class="mx-4 w-full flex gap-6 items-center text-xl bg-base-100">
+                {{ __('Comments doesn\'t exists') }}
+            </div>
+        @endforelse
     </div>
 </div>
