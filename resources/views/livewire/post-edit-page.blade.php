@@ -44,8 +44,8 @@
                     <progress class="progress progress-success" max="100" x-bind:value="progress"></progress>
                 </div>
 
-                @if($thumbnail)
-                    <img class="max-w-sm" src="{{ $thumbnail->temporaryUrl() }}" alt="{{ $post->title }}">
+                @if($temporaryUrl)
+                    <img class="max-w-sm" src="{{ $temporaryUrl }}" alt="{{ $post->title }}">
                 @elseif($post->thumbnail)
                     <img class="max-w-sm" src="{{ $post->thumbnail }}" alt="{{ $post->title }}">
                 @endif

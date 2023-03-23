@@ -7,6 +7,7 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Validation\ValidationException;
 use Livewire\Component;
 use Livewire\WithFileUploads;
+use Throwable;
 
 class PostEditPage extends Component
 {
@@ -14,6 +15,7 @@ class PostEditPage extends Component
 
     public Post $post;
     public $thumbnail = null;
+    public ?string $temporaryUrl = null;
 
     protected array $rules = [
         'post.title' => 'required|string|min:6',
@@ -31,6 +33,12 @@ class PostEditPage extends Component
     public function updatedThumbnail(): void
     {
         $this->validateOnly('thumbnail');
+
+        try {
+            $this->temporaryUrl = $this->thumbnail->temporaryUrl();
+        } catch (Throwable) {
+            return;
+        }
     }
 
     public function resetSuccessMessage(): void
@@ -48,7 +56,7 @@ class PostEditPage extends Component
         }
 
         if ($this->thumbnail) {
-            $formData['thumbnail'] = $this->thumbnail->store('photos');
+            $formData['thumbnail'] = $this->thumbnail->store('photos', 'public');
             $this->post->update($formData);
         } else {
             $this->post->save();
