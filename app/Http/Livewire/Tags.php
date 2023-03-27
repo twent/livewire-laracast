@@ -10,7 +10,7 @@ class Tags extends Component
     public Post $post;
     public $tags;
 
-    protected $listeners = ['tagAdded', 'tagRemoved'];
+    protected $listeners = ['addTag', 'removeTag'];
 
     public function mount(): void
     {
@@ -23,13 +23,13 @@ class Tags extends Component
         return view('livewire.tags');
     }
 
-    public function tagAdded($tag)
+    public function addTag($tag)
     {
         $this->post->attachTag($tag);
         $this->emit('tagAddedOnBackend', $tag);
     }
 
-    public function tagRemoved($tag)
+    public function removeTag($tag)
     {
         $this->post->detachTag($tag);
         $this->emit('tagRemovedOnBackend', $tag);

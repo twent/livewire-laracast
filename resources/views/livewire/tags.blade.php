@@ -16,10 +16,10 @@
         x-init="new Taggle($el, {
         tags: {{ $tags }},
         onTagAdd: function(event, tag) {
-            Livewire.emit('tagAdded', tag)
+            Livewire.emit('addTag', tag)
         },
         onTagRemove: function(event, tag) {
-            Livewire.emit('tagRemoved', tag)
+            Livewire.emit('removeTag', tag)
         }
     })
 
