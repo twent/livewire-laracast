@@ -4,6 +4,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Livewire\ContactForm;
+use App\Http\Livewire\Counter;
 use App\Http\Livewire\Polling;
 use App\Http\Livewire\PostEditPage;
 use App\Http\Livewire\UsersDatatable;
@@ -31,6 +32,12 @@ Route::get('/blog/{post}', [PostController::class, 'show'])->name('post');
 Route::get('/blog/{post}/edit', PostEditPage::class)->name('post.edit');
 
 Route::get('/polling', Polling::class)->name('polling');
+
+Route::post('/livewire', function () {
+    return request()->all();
+});
+
+Route::get('/counter', fn() => view('counter'))->name('counter');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
