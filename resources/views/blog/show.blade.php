@@ -1,3 +1,7 @@
+@pushonce('head-scripts')
+    @vite('resources/js/taggle.js')
+@endpushonce
+
 <x-app-layout>
     <div class="flex flex-col gap-4 space-y-4">
         <!-- Breadcrumbs -->
@@ -46,6 +50,8 @@
         </div>
 
         <p class="px-4 indent-10 leading-7">{{ $post->content }}</p>
+
+        <livewire:tags :post="$post" />
 
         <livewire:comments :post="$post" />
     </div>

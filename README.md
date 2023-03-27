@@ -21,3 +21,4 @@ How to run:
 9. Polling component (with Unit tests) - [/polling](http://localhost/polling)
 10. File uploading (post edit page) - [/blog/{post-slug}/edit](http://localhost/blog/{post-slug}/edit)
 11. File uploading Unit tests
+12. Tags (Emit and listen events between frontend and backend) on any post page

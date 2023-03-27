@@ -24,4 +24,4 @@ coverage:
 	vendor/bin/sail php artisan test --coverage
 
 format:
-	vendor/bin/phpcs && vendor/bin/phpcbf
+	vendor/bin/phpcbf

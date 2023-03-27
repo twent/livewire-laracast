@@ -14,6 +14,8 @@
         <!-- Styles -->
         @livewireStyles
 
+        @stack('head-scripts')
+
         <!-- Scripts -->
         @vite(['resources/js/app.js'])
     </head>
@@ -42,6 +44,7 @@
             </main>
         </div>
 
+        @stack('body-scripts')
         @livewireScripts
     </body>
 </html>
