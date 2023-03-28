@@ -2,6 +2,11 @@
 # yarn lockfile v1
 
 
+"@alpinejs/morph@^3.12.0":
+  version "3.12.0"
+  resolved "https://registry.yarnpkg.com/@alpinejs/morph/-/morph-3.12.0.tgz#29423e564a14012d5bafc3aeefb4a9f218e6a676"
+  integrity sha512-Hw88rfoDdOgOmXrBYad+XGa43nr12gpxfAMzeSM+waW0ngHewldJ0/SShA0jvIUv9nCSmmfPK4HVzPeTgzAPtg==
+
 "@esbuild/android-arm64@0.16.17":
   version "0.16.17"
   resolved "https://registry.yarnpkg.com/@esbuild/android-arm64/-/android-arm64-0.16.17.tgz#cf91e86df127aa3d141744edafcba0abdc577d23"

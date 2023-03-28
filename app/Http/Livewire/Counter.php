@@ -16,10 +16,10 @@ class Counter extends Component
     public function render(): string
     {
         return <<<blade
-            <div class="counter">
-                <span>{{ $this->count }}</span>
+            <div class="counter flex items-center gap-2 text-3xl font-bold">
+                <span class="-mt-1">{{ $this->count }}</span>
 
-                <button wire:click="increment">+</button>
+                <button class="btn btn-sm btn-outline" wire:click="increment">+</button>
             </div>
         blade;
     }

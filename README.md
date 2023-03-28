@@ -30,3 +30,4 @@ How to run:
 3. Custom Blade directive
 4. Storing objects snapshots
 5. Communication between PHP & JS
+6. Intelligently (morph) DOM updating (Alpine morph plugin)

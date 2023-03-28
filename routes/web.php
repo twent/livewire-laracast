@@ -8,6 +8,7 @@ use App\Http\Livewire\Counter;
 use App\Http\Livewire\Polling;
 use App\Http\Livewire\PostEditPage;
 use App\Http\Livewire\UsersDatatable;
+use App\Livewire;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -34,7 +35,19 @@ Route::get('/blog/{post}/edit', PostEditPage::class)->name('post.edit');
 Route::get('/polling', Polling::class)->name('polling');
 
 Route::post('/livewire', function () {
-    return request()->all();
+    // Get a component from snapshot
+    $component = (new Livewire)->fromSnapshot(request('snapshot'));
+    // Call a method of component
+    if (request()->has('method')) {
+        (new Livewire)->call($component, request('method'));
+    }
+
+    [$html, $snapshot] = (new Livewire)->toSnapshot($component);
+
+    return [
+        'html' => $html,
+        'snapshot' => $snapshot,
+    ];
 });
 
 Route::get('/counter', fn() => view('counter'))->name('counter');
