@@ -9,7 +9,17 @@ use Livewire\Component;
 class Tasks extends Component
 {
     public ?string $draft = '';
-    public array $tasks = ['Task 1', 'Task 2'];
+    public array $tasks = [];
+
+    public function mount()
+    {
+        $this->tasks = ['Task 1', 'Task 2'];
+    }
+
+    public function updatedDraft()
+    {
+        $this->draft = mb_convert_case($this->draft, MB_CASE_TITLE);
+    }
 
     public function createTask(): void
     {

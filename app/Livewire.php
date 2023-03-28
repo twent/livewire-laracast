@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App;
 
 use Illuminate\Support\Facades\Blade;
+use Illuminate\Support\Str;
 use Livewire\Component;
 use ReflectionClass;
 use ReflectionProperty;
@@ -14,6 +15,10 @@ final class Livewire
     public function initialRender(string $className): string
     {
         $component = new $className;
+
+        if (method_exists($component, 'mount')) {
+            $component->mount();
+        }
 
         [$html, $snapshot] = $this->toSnapshot($component);
 
@@ -76,6 +81,12 @@ final class Livewire
     public function updateProperty($component, $property, $value): void
     {
         $component->{$property} = $value;
+
+        $updatedHook = 'updated' . Str::title($property);
+
+        if (method_exists($component, $updatedHook)) {
+            $component->{$updatedHook}();
+        }
     }
 
     public function call($component, $method): void

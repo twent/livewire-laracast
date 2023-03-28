@@ -32,3 +32,4 @@ How to run:
 5. Communication between PHP & JS
 6. Intelligently (morph) DOM updating (Alpine morph plugin)
 7. Wire:model binding
+8. Lifecycle hooks (mount, property updated)
