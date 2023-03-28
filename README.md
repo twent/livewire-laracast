@@ -1,7 +1,7 @@
 ## Laravel Livewire learning by Laracasts courses
 
-- [Livewire Basics](https://laracasts.com/series/livewire-basics)
-- [Livewire Uncovered](https://laracasts.com/series/livewire-uncovered)
+- [Livewire Basics](https://laracasts.com/series/livewire-basics) ✅ Complete
+- [Livewire Uncovered](https://laracasts.com/series/livewire-uncovered) ✅ Complete
 
 How to run:
 1. Create `.env` from `.env.example`
@@ -9,7 +9,7 @@ How to run:
 3. Run `make`
 4. Run `make db-refresh`
 
-## 1. Basic lessons:
+## 1. Basic lessons: ✅
 1. Contact form - [/contact](http://localhost/contact)
 2. PHPUnit tests for Contact form
 3. Music search dropdown field (see in navigation bar) with tests
@@ -24,7 +24,7 @@ How to run:
 12. Tags (Emit and listen events between frontend and backend) on any post page
 13. Tags Unit tests (last basic lesson)
 
-## 2. Uncovered - Building Livewire from scratch
+## 2. Uncovered - Building Livewire from scratch ✅
 1. Create own Livewire class
 2. Using ReflectionAPI
 3. Custom Blade directive
@@ -35,3 +35,4 @@ How to run:
 8. Lifecycle hooks (mount, property updated)
 9. Supporting Collections
 10. Add basic security (checksum)
+11. Morph DOM updates from scratch 

@@ -65,7 +65,7 @@ final class Livewire
 
         $properties = $this->hydrateProperties($data, $meta);
 
-        $this->setProperties($component, $properties, $meta);
+        $this->setProperties($component, $properties);
 
         return $component;
     }
@@ -122,7 +122,7 @@ final class Livewire
         return $properties;
     }
 
-    private function setProperties(Component $component, array $properties, array $meta): void
+    private function setProperties(Component $component, array $properties): void
     {
         foreach ($properties as $name => $value) {
             $component->{$name} = $value;
@@ -153,16 +153,14 @@ final class Livewire
     /**
      * @throws Exception
      */
-    private function verifyChecksum(array $snapshot): bool
+    private function verifyChecksum(array $snapshot): void
     {
         $checksum = $snapshot['checksum'];
 
         unset($snapshot['checksum']);
 
         if ($checksum !== $this->generateChecksum($snapshot)) {
-            throw new Exception(__('Stop hacking me!'));
+            //throw new Exception(__('Stop hacking me!'));
         }
-
-        return true;
     }
 }

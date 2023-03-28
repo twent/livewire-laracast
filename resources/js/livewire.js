@@ -62,3 +62,69 @@ function sendRequest(el, payloadAppend) {
             updateWireModelInputs(el)
         })
 }
+
+/*
+
+Morph DOM updating
+
+ */
+function morph(from, to) {
+    if (typeof to === 'string') {
+        let temp = document.createElement('div')
+        temp.innerHTML = to
+        to = temp.firstElementChild
+    }
+
+    if (from.tagName !== to.tagName) {
+        from.replaceWith(to.cloneNode(true))
+        return
+    }
+
+    patchText(from, to)
+
+    patchAttributes(from, to)
+
+    patchChildren(from, to)
+}
+
+function patchChildren(from, to) {
+    let childFrom = from.firstElementChild
+    let childTo = to.firstElementChild
+
+    while (childTo) {
+        if (! childFrom) {
+            childFrom = from.appendChild(childTo.cloneNode(true))
+        } else {
+            morph(childFrom, childTo)
+        }
+
+        childFrom = childFrom.nextElementSibling
+        childTo = childTo.nextElementSibling
+    }
+
+    while (childFrom) {
+        let removingChildFrom = childFrom
+        childFrom = childFrom.nextElementSibling
+        removingChildFrom.remove()
+    }
+}
+
+function patchText(from, to) {
+    if (to.children.length > 0) return
+
+    from.textContent = to.textContent
+}
+
+function patchAttributes(from, to) {
+    for (let { name, value } of to.attributes) {
+        from.setAttribute(name, value)
+    }
+
+    for (let { name, value } of from.attributes) {
+        if (to.hasAttribute(name, value)) {
+            continue;
+        }
+
+        from.removeAttribute(name)
+    }
+}
