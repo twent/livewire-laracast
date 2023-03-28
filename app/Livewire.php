@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App;
 
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Str;
 use Livewire\Component;
@@ -31,18 +32,6 @@ final class Livewire
         HTML;
     }
 
-    public function fromSnapshot($snapshot): Component
-    {
-        $class = $snapshot['class'];
-        $data = $snapshot['data'];
-
-        $component = new $class;
-
-        $this->setProperties($component, $data);
-
-        return $component;
-    }
-
     public function toSnapshot($component): array
     {
         $html = Blade::render(
@@ -50,15 +39,72 @@ final class Livewire
             $properties = $this->getProperties($component)
         );
 
+        [$data, $meta] = $this->dehydrateProperties($properties);
+
         $snapshot = [
             'class' => get_class($component),
-            'data' => $properties
+            'data' => $data,
+            'meta' => $meta,
         ];
 
         return [$html, $snapshot];
     }
 
-    public function getProperties(Component $component): array
+    public function fromSnapshot($snapshot): Component
+    {
+        $class = $snapshot['class'];
+        $data = $snapshot['data'];
+        $meta = $snapshot['meta'];
+
+        $component = new $class;
+
+        $properties = $this->hydrateProperties($data, $meta);
+
+        $this->setProperties($component, $properties, $meta);
+
+        return $component;
+    }
+
+    private function hydrateProperties(array $data, array $meta): array
+    {
+        $properties = [];
+
+        foreach ($data as $name => $value) {
+            if (key_exists($name, $meta)) {
+                $value = match($meta[$name]) {
+                    'collection' => collect($value),
+                    'string' => $value ?? '',
+                    'default' => $value,
+                };
+            }
+
+            $properties[$name] = $value;
+        }
+
+        return $properties;
+    }
+
+    private function dehydrateProperties(array $properties): array
+    {
+        $data = $meta = [];
+
+        foreach ($properties as $name => $value) {
+            if (is_string($value)) {
+                $meta[$name] = 'string';
+            }
+
+            if ($value instanceof Collection) {
+                $value = $value->toArray();
+                $meta[$name] = 'collection';
+            }
+
+            $data[$name] = $value;
+        }
+
+        return [$data, $meta];
+    }
+
+    private function getProperties(Component $component): array
     {
         $properties = [];
 
@@ -71,10 +117,10 @@ final class Livewire
         return $properties;
     }
 
-    public function setProperties(Component $component, $properties): void
+    private function setProperties(Component $component, array $properties, array $meta): void
     {
-        foreach ($properties as $key => $value) {
-            $component->{$key} = $value;
+        foreach ($properties as $name => $value) {
+            $component->{$name} = $value;
         }
     }
 
@@ -89,7 +135,7 @@ final class Livewire
         }
     }
 
-    public function call($component, $method): void
+    public function call($component, string $method): void
     {
         $component->{$method}();
     }

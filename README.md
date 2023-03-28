@@ -33,3 +33,4 @@ How to run:
 6. Intelligently (morph) DOM updating (Alpine morph plugin)
 7. Wire:model binding
 8. Lifecycle hooks (mount, property updated)
+9. Supporting Collections

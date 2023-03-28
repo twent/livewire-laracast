@@ -4,26 +4,27 @@ declare(strict_types=1);
 
 namespace App\Http\Livewire;
 
+use Illuminate\Support\Collection;
 use Livewire\Component;
 
 class Tasks extends Component
 {
     public ?string $draft = '';
-    public array $tasks = [];
+    public Collection $tasks;
 
     public function mount()
     {
-        $this->tasks = ['Task 1', 'Task 2'];
+        $this->tasks = collect(['Task 1', 'Task 2']);
     }
 
     public function updatedDraft()
     {
-        $this->draft = mb_convert_case($this->draft, MB_CASE_TITLE);
+        $this->draft = $this->draft ? mb_convert_case($this->draft, MB_CASE_TITLE) : '';
     }
 
     public function createTask(): void
     {
-        $this->tasks[] = $this->draft;
+        $this->tasks->push($this->draft);
         $this->draft = '';
     }
 
