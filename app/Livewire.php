@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App;
 
+use Exception;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Str;
@@ -47,11 +48,15 @@ final class Livewire
             'meta' => $meta,
         ];
 
+        $snapshot['checksum'] = $this->generateChecksum($snapshot);
+
         return [$html, $snapshot];
     }
 
     public function fromSnapshot($snapshot): Component
     {
+        $this->verifyChecksum($snapshot);
+
         $class = $snapshot['class'];
         $data = $snapshot['data'];
         $meta = $snapshot['meta'];
@@ -138,5 +143,26 @@ final class Livewire
     public function call($component, string $method): void
     {
         $component->{$method}();
+    }
+
+    private function generateChecksum(array $snapshot): string
+    {
+        return md5(json_encode($snapshot));
+    }
+
+    /**
+     * @throws Exception
+     */
+    private function verifyChecksum(array $snapshot): bool
+    {
+        $checksum = $snapshot['checksum'];
+
+        unset($snapshot['checksum']);
+
+        if ($checksum !== $this->generateChecksum($snapshot)) {
+            throw new Exception(__('Stop hacking me!'));
+        }
+
+        return true;
     }
 }

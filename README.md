@@ -34,3 +34,4 @@ How to run:
 7. Wire:model binding
 8. Lifecycle hooks (mount, property updated)
 9. Supporting Collections
+10. Add basic security (checksum)
