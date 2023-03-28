@@ -14,7 +14,7 @@ class AppServiceProvider extends ServiceProvider
 
     public function boot(): void
     {
-        Blade::directive('livewire', function ($expression) {
+        Blade::directive('my_livewire', function ($expression) {
             return "<?php echo (new \App\Livewire())->initialRender({$expression}); ?>";
         });
     }

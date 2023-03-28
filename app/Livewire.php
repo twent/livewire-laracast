@@ -58,6 +58,7 @@ final class Livewire
         $properties = [];
 
         $reflectionProperties = (new ReflectionClass($component))->getProperties(ReflectionProperty::IS_PUBLIC);
+
         foreach ($reflectionProperties as $property) {
             $properties[$property->getName()] = $property->getValue($component);
         }
@@ -70,6 +71,11 @@ final class Livewire
         foreach ($properties as $key => $value) {
             $component->{$key} = $value;
         }
+    }
+
+    public function updateProperty($component, $property, $value): void
+    {
+        $component->{$property} = $value;
     }
 
     public function call($component, $method): void

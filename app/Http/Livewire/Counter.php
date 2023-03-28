@@ -15,12 +15,16 @@ class Counter extends Component
 
     public function render(): string
     {
-        return <<<blade
-            <div class="counter flex items-center gap-2 text-3xl font-bold">
-                <span class="-mt-1">{{ $this->count }}</span>
+        return <<<'HTML'
+            <div class="counter flex flex-col gap-4">
+                <h1 class="text-3xl font-bold">Counter</h1>
 
-                <button class="btn btn-sm btn-outline" wire:click="increment">+</button>
+                <div class="mx-4 flex items-center gap-4">
+                    <span class="-mt-1 text-3xl">{{ $count }}</span>
+
+                    <button class="btn btn-sm btn-outline" wire:click="increment">+</button>
+                </div>
             </div>
-        blade;
+        HTML;
     }
 }

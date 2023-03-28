@@ -38,8 +38,13 @@ Route::post('/livewire', function () {
     // Get a component from snapshot
     $component = (new Livewire)->fromSnapshot(request('snapshot'));
     // Call a method of component
-    if (request()->has('method')) {
-        (new Livewire)->call($component, request('method'));
+    if ($method = request('method')) {
+        (new Livewire)->call($component, $method);
+    }
+
+    // Update property
+    if ([$property, $value] = request('updateProperty')) {
+        (new Livewire)->updateProperty($component, $property, $value);
     }
 
     [$html, $snapshot] = (new Livewire)->toSnapshot($component);
@@ -51,6 +56,7 @@ Route::post('/livewire', function () {
 });
 
 Route::get('/counter', fn() => view('counter'))->name('counter');
+Route::get('/tasks', fn() => view('tasks'))->name('tasks');
 
 Route::get('/dashboard', function () {
     return view('dashboard');

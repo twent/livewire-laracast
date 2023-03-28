@@ -21,6 +21,9 @@
                     <x-nav-link :href="route('polling')" :active="request()->routeIs('polling')">
                         {{ __('Polling') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('tasks')" :active="request()->routeIs('tasks')">
+                        {{ __('Tasks') }}
+                    </x-nav-link>
                     <x-nav-link :href="route('counter')" :active="request()->routeIs('counter')">
                         {{ __('Counter') }}
                     </x-nav-link>
@@ -103,6 +106,9 @@
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('polling')" :active="request()->routeIs('polling')">
                 {{ __('Polling') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('tasks')" :active="request()->routeIs('tasks')">
+                {{ __('Tasks') }}
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('counter')" :active="request()->routeIs('counter')">
                 {{ __('Counter') }}

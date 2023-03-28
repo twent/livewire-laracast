@@ -31,3 +31,4 @@ How to run:
 4. Storing objects snapshots
 5. Communication between PHP & JS
 6. Intelligently (morph) DOM updating (Alpine morph plugin)
+7. Wire:model binding
